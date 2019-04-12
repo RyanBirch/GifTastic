@@ -4,4 +4,9 @@
 
 #add-gif {
   font-size: 3vh;
+  cursor: pointer;
+}
+
+.topic {
+  cursor: pointer;
 }
