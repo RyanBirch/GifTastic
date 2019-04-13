@@ -1,4 +1,6 @@
 let topics = ['dog', 'chicken', 'octopus', 'panda']
+let imgAnimatedSrc = []
+let imgStaticSrc = []
 
 function displayButtons() {
   $('#buttons-display').empty()
@@ -30,29 +32,33 @@ function displayGifs() {
     method: 'GET'
   }).then(function(response) {
     console.log(response)
-    let imgAnimatedSrc = []
-    let imgStaticSrc = []
+
     for (let i = 0; i < 10; i++) {
       // desktop size
       imgAnimatedSrc[i] = response.data[i].images.original.url
       imgStaticSrc[i] = response.data[i].images.original_still.url
-      $('#gif-display').append(`<img src=${imgStaticSrc[i]} id="gif-img" val="still" data-num=${i}>`)
-      // $('#gif-display').append(`<img src=${response.data[i].images.original.url}>`)
+      let rating = response.data[i].rating
+      let image = $(`<img src=${imgStaticSrc[i]} class="gif-img" data-num=${i}>`)
+      $('#gif-display').append(image).append(`<p class="rating">Rating: ${rating}</p>`)
+      image.val('still')
+      // $('#gif-display').append(`<img src=${imgStaticSrc[i]} class="gif-img" value="still" data-num=${i}>`)
+      // .append(`<p class="rating">Rating: ${rating}</p>`)
     }
     $('#gif-container').prepend('<div id="gif-display">')
   })
 }
 
-$('#gif-img').on('click', function() {
-  if ($(this).attr('val') === 'still') {
-    $(this).attr('src', imgAnimatedSrc[data-num])
-    $(this).attr('val', 'animated')
+function changeSrc() {
+  if ($(this).val() === 'still') {
+    $(this).attr('src', imgAnimatedSrc[$(this).attr('data-num')])
+    $(this).val('animated')
   } else {
-    $(this).attr('src', imgStaticSrc[data-num])
-    $(this).attr('val', 'still')
+    $(this).attr('src', imgStaticSrc[$(this).attr('data-num')])
+    $(this).val('still')
   }
-})
+}
 
-$(document).on('click', '.topic', displayGifs);
+$(document).on('click', '.topic', displayGifs)
+$(document).on('click', '.gif-img', changeSrc)
 
 displayButtons()
