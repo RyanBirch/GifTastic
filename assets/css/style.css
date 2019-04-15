@@ -1,14 +1,50 @@
+body {
+  background-image: url('../images/footer_lodyas.png')
+}
+
+#buttons-display {
+  text-align: center;
+  margin: 2em 0;
+}
+
+.title {
+  color: #eeeeee;
+  text-align: center;
+  font-size: 3em;
+}
+
+.instructions {
+  color: #eeeeee;
+  width: 75%;
+  margin: 0 auto;
+}
+
 #gif-form {
   font-size: 5vh;
+  text-align: center;
+}
+
+label {
+  color: #eeeeee;
+}
+
+#gif-input {
+  line-height: 2.75em;
+  width: 200px;
+  font-size: 15px;
 }
 
 #add-gif {
   font-size: 3vh;
+  padding: 0.5em;
   cursor: pointer;
+  border-radius: 7px;
 }
 
 .topic {
   cursor: pointer;
+  font-size: 20px;
+  padding: 8px;
 }
 
 img {
@@ -23,6 +59,10 @@ figure {
   /* border: thin silver solid; */
   margin: 1em;
   padding: 0;
+}
+
+.rating {
+  color: #eeeeee;
 }
 
 .clearfix::after {

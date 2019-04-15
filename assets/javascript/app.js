@@ -34,7 +34,6 @@ function displayGifs() {
     console.log(response)
 
     for (let i = 0; i < 10; i++) {
-      // desktop size
       imgAnimatedSrc[i] = response.data[i].images.fixed_height.url
       imgStaticSrc[i] = response.data[i].images.fixed_height_still.url
       let rating = response.data[i].rating
