@@ -14,3 +14,19 @@
 img {
   cursor: pointer;
 }
+
+figure {
+  float: left;
+  /* width: 33.3%; */
+  text-align: center;
+  font-style: italic;
+  /* border: thin silver solid; */
+  margin: 1em;
+  padding: 0;
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
