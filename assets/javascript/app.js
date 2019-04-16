@@ -37,24 +37,14 @@ function displayGifs() {
       imgAnimatedSrc[i] = response.data[i].images.fixed_height.url
       imgStaticSrc[i] = response.data[i].images.fixed_height_still.url
       let rating = response.data[i].rating
-      /*
-      let image = $(`<img src=${imgStaticSrc[i]} class="gif-img" data-num=${i}>`)
-      $('#gif-display').append(image).append(`<p class="rating">Rating: ${rating}</p>`)
-      image.val('still')
-      */
-      // this is added
       let figure = $('<figure>')
       let image = $(`<img src=${imgStaticSrc[i]} class="gif-img" data-num=${i}>`)
       image.val('still')
       let ratingCap = $(`<figcaption class="rating">Rating: ${rating}</figcaption>`)
       figure.append(image).append(ratingCap)
       $('#inner-container').append(figure)
-      // added code ends here
     }
-    // $('#gif-container').prepend('<figure id="gif-display">')
-    // this is added
     $('#gif-container').prepend(`<div id="inner-container">`)
-    // added code ends here
   })
 }
 

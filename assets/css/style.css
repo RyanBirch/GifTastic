@@ -1,6 +1,4 @@
-body {
-  background-image: url('../images/footer_lodyas.png')
-}
+body { background-image: url('../images/footer_lodyas.png') }
 
 #buttons-display {
   text-align: center;
@@ -24,9 +22,7 @@ body {
   text-align: center;
 }
 
-label {
-  color: #eeeeee;
-}
+label { color: #eeeeee; }
 
 #gif-input {
   line-height: 2.75em;
@@ -47,23 +43,17 @@ label {
   padding: 8px;
 }
 
-img {
-  cursor: pointer;
-}
+img { cursor: pointer; }
 
 figure {
   float: left;
-  /* width: 33.3%; */
   text-align: center;
   font-style: italic;
-  /* border: thin silver solid; */
   margin: 1em;
   padding: 0;
 }
 
-.rating {
-  color: #eeeeee;
-}
+.rating { color: #eeeeee; }
 
 .clearfix::after {
   content: "";
