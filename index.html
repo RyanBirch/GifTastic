@@ -11,7 +11,8 @@
 
   <h1 class="title"><a href="#">GifTastic</a></h1>
   <h2 class="instructions">Search for a gif to add it to the buttons display. Press one of the buttons
-    to generate gifs. Click on a gif to animate it and see the magic!
+    to generate gifs. Click on a gif to animate it and see the magic! Save your favorite gifs to your
+    favorites list!
   </h2>
 
   <div id="buttons-display"></div>
@@ -22,13 +23,13 @@
     <button id="add-gif" type="submit">Give me the gifs</button>
   </form>
 
-  <button id="favorites-link"><a href="#favorites-display">Favorites</a></button>
+  <a href="#fav-title"><button id="favorites-link">Favorites</button></a>
 
   <div id="gif-container">
     <div id="inner-container" class="clearfix"></div>
   </div>
 
-  <h2 class="fav-title">Favorites</h2>
+  <h2 id="fav-title">Favorites</h2>
   <div id="favorites-display"></div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

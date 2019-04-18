@@ -1,8 +1,4 @@
 let topics = ['dog', 'chicken', 'octopus', 'panda']
-/*
-let imgAnimatedSrc = []
-let imgStaticSrc = []
-*/
 
 function displayButtons() {
   $('#buttons-display').empty()
@@ -36,20 +32,13 @@ function displayGifs() {
     console.log(response)
 
     for (let i = 0; i < 10; i++) {
-      /*
-      imgAnimatedSrc[i] = response.data[i].images.fixed_height.url
-      imgStaticSrc[i] = response.data[i].images.fixed_height_still.url
-      */
-      // this is added
       let imgAnimatedSrc = response.data[i].images.fixed_height.url
       let imgStaticSrc = response.data[i].images.fixed_height_still.url
-      // added code ends here
       let rating = response.data[i].rating
       let figure = $('<figure>')
-      let image = $(`<img src=${imgStaticSrc[i]} class="gif-img" data-num=${i}>`)
-      image.val('still')
+      let image = $(`<img src=${imgStaticSrc} class="gif-img" data-state="still" data-still=${imgStaticSrc} data-animated=${imgAnimatedSrc}>`)
       let ratingCap = $(`<figcaption class="rating">Rating: ${rating}</figcaption>`)
-      let favButton = $(`<button class="fav-button" data-still=${imgStaticSrc[i]} data-animated=${imgAnimatedSrc[i]}>&#9733; Favorite</button>`)
+      let favButton = $(`<button class="fav-button" data-state="still" data-still=${imgStaticSrc} data-animated=${imgAnimatedSrc}>&#9733; Favorite</button>`)
       ratingCap.append(favButton)
       figure.append(image).append(ratingCap)
       $('#inner-container').append(figure)
@@ -59,17 +48,19 @@ function displayGifs() {
 }
 
 function changeSrc() {
-  if ($(this).val() === 'still') {
-    $(this).attr('src', imgAnimatedSrc[$(this).attr('data-num')])
-    $(this).val('animated')
+  if ($(this).attr('data-state') === 'still') {
+    $(this).attr('src', $(this).attr('data-animated'))
+    $(this).attr('data-state', 'animated')
   } else {
-    $(this).attr('src', imgStaticSrc[$(this).attr('data-num')])
-    $(this).val('still')
+    $(this).attr('src', $(this).attr('data-still'))
+    $(this).attr('data-state', 'still')
   }
 }
 
 function addToFavs() {
-  let img = $(`<img src=${$(this).attr('data-animated')}>`)
+  let imgAnimatedSrc = $(this).attr('data-animated')
+  let imgStaticSrc = $(this).attr('data-still')
+  let img = $(`<img src=${imgStaticSrc} class="gif-img" data-state="still" data-still=${imgStaticSrc} data-animated=${imgAnimatedSrc}>`)
   $('#favorites-display').append(img)
 }
 

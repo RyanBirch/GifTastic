@@ -75,15 +75,24 @@ figure {
 
 .rating { color: #eeeeee; }
 
-.fav-title {
-  color: #eeeeee;
-  text-align: center;
-  font-size: 30px;
-}
-
 .fav-button {
   margin: 0 1em;
   cursor: pointer;
+}
+
+#fav-title {
+  color: #eeeeee;
+  text-align: center;
+  font-size: 30px;
+  margin-top: 5em;
+}
+
+#favorites-display img {
+  float: left;
+  text-align: center;
+  font-style: italic;
+  margin: 1em;
+  padding: 0;
 }
 
 .clearfix::after {
