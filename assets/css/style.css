@@ -11,6 +11,11 @@ body { background-image: url('../images/footer_lodyas.png') }
   font-size: 3em;
 }
 
+.title a {
+  text-decoration: none;
+  color: #eee;
+}
+
 .instructions {
   color: #eeeeee;
   width: 75%;
@@ -43,6 +48,21 @@ label { color: #eeeeee; }
   padding: 8px;
 }
 
+#favorites-link {
+  text-align: center;
+  margin: 1em auto;
+  display: block;
+  font-size: 15px;
+  border-radius: 7px;
+  padding: 8px;
+  cursor: pointer;
+}
+
+#favorites-link a, #favorites-link a:visited {
+  text-decoration: none;
+  color: ##1d1d1d;
+}
+
 img { cursor: pointer; }
 
 figure {
@@ -54,6 +74,17 @@ figure {
 }
 
 .rating { color: #eeeeee; }
+
+.fav-title {
+  color: #eeeeee;
+  text-align: center;
+  font-size: 30px;
+}
+
+.fav-button {
+  margin: 0 1em;
+  cursor: pointer;
+}
 
 .clearfix::after {
   content: "";

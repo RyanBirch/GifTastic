@@ -9,7 +9,7 @@
 </head>
 <body>
 
-  <h1 class="title">GifTastic</h1>
+  <h1 class="title"><a href="#">GifTastic</a></h1>
   <h2 class="instructions">Search for a gif to add it to the buttons display. Press one of the buttons
     to generate gifs. Click on a gif to animate it and see the magic!
   </h2>
@@ -19,13 +19,17 @@
   <form id="gif-form">
     <label for="gif-input">Search for gifs</label>
     <input type="text" id="gif-input">
-    <button id="add-gif" type="submit" value="Give me the gifs">Give me the gifs</button>
+    <button id="add-gif" type="submit">Give me the gifs</button>
   </form>
+
+  <button id="favorites-link"><a href="#favorites-display">Favorites</a></button>
 
   <div id="gif-container">
     <div id="inner-container" class="clearfix"></div>
   </div>
 
+  <h2 class="fav-title">Favorites</h2>
+  <div id="favorites-display"></div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="assets/javascript/app.js"></script>
