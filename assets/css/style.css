@@ -5,10 +5,18 @@ body { background-image: url('../images/footer_lodyas.png') }
   margin: 2em 0;
 }
 
+#buttons-display button {
+  border-radius: 5px;
+  margin: 3px;
+  background-color: #00a1d4;
+  color: #eeeeee;
+}
+
 .title {
   color: #eeeeee;
   text-align: center;
   font-size: 3em;
+  font-family: 'Gravitas one', cursive;
 }
 
 .title a {
@@ -40,6 +48,7 @@ label { color: #eeeeee; }
   padding: 0.5em;
   cursor: pointer;
   border-radius: 7px;
+  background-color: #eeeeee;
 }
 
 .topic {
@@ -51,11 +60,12 @@ label { color: #eeeeee; }
 #favorites-link {
   text-align: center;
   margin: 1em auto;
-  display: block;
-  font-size: 15px;
+  display: inline-block;
+  font-size: 3vh;
   border-radius: 7px;
-  padding: 8px;
+  padding: 0.5em;
   cursor: pointer;
+  background-color: #eeeeee;
 }
 
 #favorites-link a, #favorites-link a:visited {
@@ -78,13 +88,17 @@ figure {
 .fav-button {
   margin: 0 1em;
   cursor: pointer;
+  background-color: #eeeeee;
+  border-radius: 3px;
 }
+
+.fav-button:active { background-color: #007aeb; }
 
 #fav-title {
   color: #eeeeee;
   text-align: center;
   font-size: 30px;
-  margin-top: 5em;
+  margin-top: 45vh;
 }
 
 #favorites-display img {
