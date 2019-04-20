@@ -1,4 +1,6 @@
-body { background-image: url('../images/footer_lodyas.png') }
+body {
+  background-image: url('../images/footer_lodyas.png')
+}
 
 #buttons-display {
   text-align: center;
@@ -35,7 +37,9 @@ body { background-image: url('../images/footer_lodyas.png') }
   text-align: center;
 }
 
-label { color: #eeeeee; }
+label {
+  color: #eeeeee;
+}
 
 #gif-input {
   line-height: 2.75em;
@@ -57,10 +61,21 @@ label { color: #eeeeee; }
   padding: 8px;
 }
 
+#clear-gifs {
+  text-align: center;
+  margin: 1em auto;
+  display: inline-block;
+  font-size: 3vh;
+  border-radius: 7px;
+  padding: 0.5em;
+  cursor: pointer;
+  background-color: #eeeeee;
+}
+
 #favorites-link {
   text-align: center;
   margin: 1em auto;
-  display: block;
+  display: inline-block;
   font-size: 3vh;
   border-radius: 7px;
   padding: 0.5em;
@@ -73,7 +88,9 @@ label { color: #eeeeee; }
   color: ##1d1d1d;
 }
 
-img { cursor: pointer; }
+img {
+  cursor: pointer;
+}
 
 figure {
   float: left;
@@ -83,7 +100,9 @@ figure {
   padding: 0;
 }
 
-.rating { color: #eeeeee; }
+.rating {
+  color: #eeeeee;
+}
 
 .fav-button {
   margin: 0 1em;
@@ -92,13 +111,16 @@ figure {
   border-radius: 3px;
 }
 
-.fav-button:active { background-color: #007aeb; }
+.fav-button:active {
+  background-color: #007aeb;
+}
 
 #fav-title {
   color: #eeeeee;
   text-align: center;
   font-size: 30px;
   margin-top: 45vh;
+  margin-bottom: 0.5em;
 }
 
 #favorites-display img {
@@ -107,6 +129,17 @@ figure {
   font-style: italic;
   margin: 1em;
   padding: 0;
+}
+
+#clear-favorites {
+  text-align: center;
+  margin: 0 auto;
+  display: inline-block;
+  font-size: 3vh;
+  border-radius: 7px;
+  padding: 0.5em;
+  cursor: pointer;
+  background-color: #eeeeee;
 }
 
 .clearfix::after {

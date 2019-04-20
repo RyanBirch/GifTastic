@@ -57,6 +57,10 @@ function changeSrc() {
   }
 }
 
+$('#clear-gifs').on('click', function() {
+  $('#inner-container').siblings('#inner-container').empty()
+})
+
 function addToFavs() {
   let imgAnimatedSrc = $(this).attr('data-animated')
   let imgStaticSrc = $(this).attr('data-still')
@@ -68,14 +72,20 @@ function addToFavs() {
   cap.append(remove)
   figure.append(cap)
   $('#favorites-display').append(figure)
+  /*
+  let favSave = figure.html()
+  localStorage.setItem('favSave',favSave)
+  $('#favorites-display').append($('<figure>').append(localStorage.getItem('favSave')))
+  */
 }
 
 function removeFav() {
-  console.log($(this))
-  console.log($(this).parent())
-  console.log($(this).parent().parent())
   $(this).parent().parent().remove()
 }
+
+$('#clear-favorites').on('click', function() {
+  $('#favorites-display').empty()
+})
 
 $(document).on('click', '.topic', displayGifs)
 $(document).on('click', '.gif-img', changeSrc)
