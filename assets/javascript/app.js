@@ -1,4 +1,5 @@
 let topics = ['dog', 'chicken', 'octopus', 'panda']
+let savedFavArray = []
 
 function displayButtons() {
   $('#buttons-display').empty()
@@ -74,18 +75,41 @@ function addToFavs() {
   $('#favorites-display').append(figure)
 
   let favSave = figure.html()
-  localStorage.setItem('favSave',favSave)
-  $('#favorites-display').append($('<figure>').append(localStorage.getItem('favSave')))
-
+  savedFavArray.push(favSave)
+  localStorage.setItem('savedFavArray',JSON.stringify(savedFavArray))
 }
 
 function removeFav() {
   $(this).parent().parent().remove()
+  let thisSrc = $(this).parent().siblings('img').attr('src')
+
+  let arr = JSON.parse(localStorage.getItem('savedFavArray'))
+  for (let i = 0; i < arr.length; i++) {
+    console.log(`arr[${i}]: ` + arr[i])
+    console.log(`this src: ` + $(this).parent().siblings('img').attr('src'))
+    let figure = $('<figure>')
+    figure.append(arr[i])
+    console.log(`arr[${i}] src: ` + figure.find('img').attr('src'))
+    let currentElemSrc = figure.find('img').attr('src')
+    if (thisSrc === currentElemSrc) {
+      arr.splice(i, 1)
+      localStorage.clear()
+      localStorage.setItem('savedFavArray', JSON.stringify(arr))
+    }
+  }
 }
 
 $('#clear-favorites').on('click', function() {
   $('#favorites-display').empty()
+  localStorage.clear()
 })
+
+function displaySavedFavs() {
+  let arr = JSON.parse(localStorage.getItem('savedFavArray'))
+  for (let i = 0; i < arr.length; i++) {
+    $('#favorites-display').append($('<figure>').append(arr[i]))
+  }
+}
 
 $(document).on('click', '.topic', displayGifs)
 $(document).on('click', '.gif-img', changeSrc)
@@ -93,3 +117,4 @@ $(document).on('click', '.fav-button', addToFavs)
 $(document).on('click', '.remove-button', removeFav)
 
 displayButtons()
+displaySavedFavs()
