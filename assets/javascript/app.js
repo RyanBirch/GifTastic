@@ -60,12 +60,26 @@ function changeSrc() {
 function addToFavs() {
   let imgAnimatedSrc = $(this).attr('data-animated')
   let imgStaticSrc = $(this).attr('data-still')
+  let figure = $('<figure>')
   let img = $(`<img src=${imgStaticSrc} class="gif-img" data-state="still" data-still=${imgStaticSrc} data-animated=${imgAnimatedSrc}>`)
-  $('#favorites-display').append(img)
+  figure.append(img)
+  let cap = $('<figcaption>')
+  let remove = $(`<button class="remove-button">Remove</button>`)
+  cap.append(remove)
+  figure.append(cap)
+  $('#favorites-display').append(figure)
+}
+
+function removeFav() {
+  console.log($(this))
+  console.log($(this).parent())
+  console.log($(this).parent().parent())
+  $(this).parent().parent().remove()
 }
 
 $(document).on('click', '.topic', displayGifs)
 $(document).on('click', '.gif-img', changeSrc)
 $(document).on('click', '.fav-button', addToFavs)
+$(document).on('click', '.remove-button', removeFav)
 
 displayButtons()

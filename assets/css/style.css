@@ -60,7 +60,7 @@ label { color: #eeeeee; }
 #favorites-link {
   text-align: center;
   margin: 1em auto;
-  display: inline-block;
+  display: block;
   font-size: 3vh;
   border-radius: 7px;
   padding: 0.5em;
