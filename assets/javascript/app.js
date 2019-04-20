@@ -1,6 +1,11 @@
 let topics = ['dog', 'chicken', 'octopus', 'panda']
 let savedFavArray = []
+let arr = JSON.parse(localStorage.getItem('savedFavArray'))
+if (arr) {
+  savedFavArray = arr
+}
 
+// display topic buttons from array
 function displayButtons() {
   $('#buttons-display').empty()
   let topicsLength = topics.length
@@ -13,6 +18,7 @@ function displayButtons() {
   }
 }
 
+// add a topic to the buttons display
 $('#add-gif').on('click', function() {
   event.preventDefault()
   let topic = $('#gif-input').val().trim()
@@ -21,6 +27,7 @@ $('#add-gif').on('click', function() {
   $('#gif-input').val('')
 })
 
+// fetch gifs from the api and display them on screen
 function displayGifs() {
   let key = 'TUOzKgx9bjMSFVmrVSQ3d619fQIY6iG3'
   let topic = $(this).attr('data-name')
@@ -48,6 +55,7 @@ function displayGifs() {
   })
 }
 
+// animate gifs when you click on them
 function changeSrc() {
   if ($(this).attr('data-state') === 'still') {
     $(this).attr('src', $(this).attr('data-animated'))
@@ -58,10 +66,12 @@ function changeSrc() {
   }
 }
 
+// clear gifs from the main screen
 $('#clear-gifs').on('click', function() {
   $('#inner-container').siblings('#inner-container').empty()
 })
 
+// add gifs to your favorites list and save them in local storage
 function addToFavs() {
   let imgAnimatedSrc = $(this).attr('data-animated')
   let imgStaticSrc = $(this).attr('data-still')
@@ -76,9 +86,11 @@ function addToFavs() {
 
   let favSave = figure.html()
   savedFavArray.push(favSave)
-  localStorage.setItem('savedFavArray',JSON.stringify(savedFavArray))
+  localStorage.clear()
+  localStorage.setItem('savedFavArray', JSON.stringify(savedFavArray))
 }
 
+// remove selected favorites from the screen and local storage
 function removeFav() {
   $(this).parent().parent().remove()
   let thisSrc = $(this).parent().siblings('img').attr('src')
@@ -98,11 +110,13 @@ function removeFav() {
   }
 }
 
+// remove all favorites from the screen and local storage
 $('#clear-favorites').on('click', function() {
   $('#favorites-display').empty()
   localStorage.clear()
 })
 
+// display favorites that are saved in local storage
 function displaySavedFavs() {
   let arr = JSON.parse(localStorage.getItem('savedFavArray'))
   if (arr) {
