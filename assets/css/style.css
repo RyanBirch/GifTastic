@@ -50,6 +50,7 @@ label {
 #add-gif {
   font-size: 3vh;
   padding: 0.5em;
+  margin-top: 0.5em;
   cursor: pointer;
   border-radius: 7px;
   background-color: #eeeeee;
@@ -118,7 +119,7 @@ figure {
 #fav-title {
   color: #eeeeee;
   text-align: center;
-  font-size: 30px;
+  font-size: 50px;
   margin-top: 0;
   margin-bottom: 0.5em;
 }

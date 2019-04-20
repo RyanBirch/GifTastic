@@ -84,13 +84,12 @@ function removeFav() {
   let thisSrc = $(this).parent().siblings('img').attr('src')
 
   let arr = JSON.parse(localStorage.getItem('savedFavArray'))
+
   for (let i = 0; i < arr.length; i++) {
-    console.log(`arr[${i}]: ` + arr[i])
-    console.log(`this src: ` + $(this).parent().siblings('img').attr('src'))
     let figure = $('<figure>')
     figure.append(arr[i])
-    console.log(`arr[${i}] src: ` + figure.find('img').attr('src'))
     let currentElemSrc = figure.find('img').attr('src')
+
     if (thisSrc === currentElemSrc) {
       arr.splice(i, 1)
       localStorage.clear()
@@ -106,8 +105,11 @@ $('#clear-favorites').on('click', function() {
 
 function displaySavedFavs() {
   let arr = JSON.parse(localStorage.getItem('savedFavArray'))
-  for (let i = 0; i < arr.length; i++) {
-    $('#favorites-display').append($('<figure>').append(arr[i]))
+  if (arr) {
+    let len = arr.length
+    for (let i = 0; i < len; i++) {
+      $('#favorites-display').append($('<figure>').append(arr[i]))
+    }
   }
 }
 
