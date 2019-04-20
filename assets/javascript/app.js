@@ -72,11 +72,11 @@ function addToFavs() {
   cap.append(remove)
   figure.append(cap)
   $('#favorites-display').append(figure)
-  /*
+
   let favSave = figure.html()
   localStorage.setItem('favSave',favSave)
   $('#favorites-display').append($('<figure>').append(localStorage.getItem('favSave')))
-  */
+
 }
 
 function removeFav() {
