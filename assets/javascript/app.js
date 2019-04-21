@@ -1,5 +1,7 @@
 let topics = ['dog', 'chicken', 'octopus', 'panda']
 let savedFavArray = []
+
+// savedFavArray will hold what's in local storage
 let arr = JSON.parse(localStorage.getItem('savedFavArray'))
 if (arr) {
   savedFavArray = arr
@@ -13,6 +15,7 @@ function displayButtons() {
     let button = $('<button>')
     button.addClass('topic')
     button.attr('data-name', topics[i])
+    button.attr('data-clicked', '0')
     button.text(topics[i])
     $('#buttons-display').append(button)
   }
@@ -31,7 +34,10 @@ $('#add-gif').on('click', function() {
 function displayGifs() {
   let key = 'TUOzKgx9bjMSFVmrVSQ3d619fQIY6iG3'
   let topic = $(this).attr('data-name')
-  let queryURL = `https://api.giphy.com/v1/gifs/search?q=${topic}&api_key=${key}&limit=10`
+  let numClicked = parseInt($(this).attr('data-clicked'))
+  let offset = numClicked * 10
+  $(this).attr('data-clicked', numClicked + 1)
+  let queryURL = `https://api.giphy.com/v1/gifs/search?q=${topic}&api_key=${key}&limit=10&offset=${offset}`
 
   $.ajax({
     url: queryURL,
