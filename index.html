@@ -11,26 +11,26 @@
 <body>
 
   <h1 class="title"><a href="#">GifTastic</a></h1>
-  <h2 class="instructions">Search for a gif to add it to the buttons display. Press one of the buttons
-    to generate gifs. Keep clicking to add more gifs of that topic. Click on a gif to animate it and see
-    the magic! Save your favorite gifs to your favorites list!
+  <h2 class="instructions">All your favorite gifs in one place! <br> Click on a gif to pause it. Save your favorite gifs to your favorites list!
   </h2>
-
-  <div id="buttons-display"></div>
 
     <form id="gif-form">
       <label for="gif-input">Search for gifs</label>
       <input type="text" id="gif-input">
-      <button id="add-gif" type="submit">Give me the gifs</button>
+      <button id="add-gif">Go</button>
     </form>
 
   <div style="text-align:center">
     <button id="clear-gifs">Clear gifs</button>
-    <a href="favorites.html"><button id="favorites-link">Favorites</button></a>
+    <a href="favorites.html"><button id="favorites-link">&#9733; Favorites &#9733;</button></a>
   </div>
 
   <div id="gif-container">
-    <div id="inner-container" class="clearfix"></div>
+    <div id="results"></div>
+    <div class="next-prev">
+      <a href="#"><button id="prev-page">Prev Page</button></a>
+      <a href="#"><button id="next-page">Next Page</button></a>
+    </div>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

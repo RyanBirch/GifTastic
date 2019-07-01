@@ -1,6 +1,17 @@
 # GifTastic
-This web application uses the Giphy api to display gifs on the screen. Type in a term in the search
-bar to create a button. Click the button to search the Giphy api for gifs relating to that topic. Click
-on the gifs to animate them, click again to stop the animation. Save your favorite gifs to your favorites list. Your favorites list is saved in localStorage so you can close the tab and they will still be there when you get back. Made with HTML, CSS, Javascript, and jQuery.
 
-See the app here: <https://ryanbirch.github.io/GifTastic/>
+## Overview
+An application to search for gifs using the GIPHY api. Click on gifs to pause them, save your favorite gifs to your favorites list. Your favorites are saved in local storage, so you can close the browser, come back, and they will still be there. 
+
+---
+
+## Technologies used
+* HTML 
+* CSS
+* JavaScript
+* jQuery
+
+--- 
+
+## Demo
+See the app here: <a href="https://ryanbirch.github.io/GifTastic/">GifTastic</a>

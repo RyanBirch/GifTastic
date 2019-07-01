@@ -1,17 +1,5 @@
 body {
-  background-image: url('../images/footer_lodyas.png')
-}
-
-#buttons-display {
-  text-align: center;
-  margin: 2em 0;
-}
-
-#buttons-display button {
-  border-radius: 5px;
-  margin: 3px;
-  background-color: #00a1d4;
-  color: #eeeeee;
+  background-color: #1b1b1b;
 }
 
 .title {
@@ -29,8 +17,10 @@ body {
 .instructions {
   color: #eeeeee;
   width: 75%;
-  margin: 0 auto;
+  margin: 1.25em auto;
   font-size: 1.25em;
+  text-align: center;
+  line-height: 1.5em;
 }
 
 #gif-form {
@@ -57,12 +47,6 @@ label {
   background-color: #eeeeee;
 }
 
-.topic {
-  cursor: pointer;
-  font-size: 20px;
-  padding: 8px;
-}
-
 #clear-gifs {
   text-align: center;
   margin: 1em auto;
@@ -87,7 +71,7 @@ label {
 
 #favorites-link a, #favorites-link a:visited {
   text-decoration: none;
-  color: ##1d1d1d;
+  color: #1d1d1d;
 }
 
 img {
@@ -95,7 +79,7 @@ img {
 }
 
 figure {
-  float: left;
+  display: inline-block;
   text-align: center;
   font-style: italic;
   margin: 1em;
@@ -144,8 +128,21 @@ figure {
   background-color: #eeeeee;
 }
 
-.clearfix::after {
-  content: "";
-  clear: both;
-  display: table;
+.next-prev {
+  text-align: center;
+}
+
+#next-page, #prev-page {
+  font-size: 1.5em;
+  padding: 0.5em;
+  margin: 0.75em 0.5em;
+  border-radius: 10px;
+}
+
+#next-page:hover, #prev-page:hover {
+  cursor: pointer;
+}
+
+#gif-container {
+  text-align: center;
 }

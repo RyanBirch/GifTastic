@@ -1,67 +1,71 @@
-let topics = ['dog', 'chicken', 'octopus', 'panda']
-let savedFavArray = []
+let savedFavArray = []  // favorites will be saved here
+let page = 0  // for loading a new page of gifs
 
-// savedFavArray will hold what's in local storage
+// don't show these buttons until we load gifs
+$('#prev-page').hide()
+$('#next-page').hide()
+
+// if we have favorites in local storage, they will go into this array
 let arr = JSON.parse(localStorage.getItem('savedFavArray'))
 if (arr) {
   savedFavArray = arr
 }
 
-// display topic buttons from array
-function displayButtons() {
-  $('#buttons-display').empty()
-  let topicsLength = topics.length
-  for (let i = 0; i < topicsLength; i++) {
-    let button = $('<button>')
-    button.addClass('topic')
-    button.attr('data-name', topics[i])
-    button.attr('data-clicked', '0')
-    button.text(topics[i])
-    $('#buttons-display').append(button)
-  }
-}
-
-// add a topic to the buttons display
+// get input from user and run search
 $('#add-gif').on('click', function() {
   event.preventDefault()
   let topic = $('#gif-input').val().trim()
-  topics.push(topic)
-  displayButtons()
-  $('#gif-input').val('')
+  searchGifs(topic)
 })
 
 // fetch gifs from the api and display them on screen
-function displayGifs() {
+async function searchGifs(topic) {
   let key = 'TUOzKgx9bjMSFVmrVSQ3d619fQIY6iG3'
-  let topic = $(this).attr('data-name')
-  let numClicked = parseInt($(this).attr('data-clicked'))
-  let offset = numClicked * 10
-  $(this).attr('data-clicked', numClicked + 1)
-  let queryURL = `https://api.giphy.com/v1/gifs/search?q=${topic}&api_key=${key}&limit=10&offset=${offset}`
+  let limit = 20
+  let offset = page * limit
+  let queryURL = `https://api.giphy.com/v1/gifs/search?q=${topic}&api_key=${key}&limit=${limit}&offset=${offset}`
 
-  $.ajax({
-    url: queryURL,
-    method: 'GET'
-  }).then(function(response) {
-    console.log(response)
+  // call api
+  let response = await $.get(queryURL)
 
-    for (let i = 0; i < 10; i++) {
-      let imgAnimatedSrc = response.data[i].images.fixed_height.url
-      let imgStaticSrc = response.data[i].images.fixed_height_still.url
-      let rating = response.data[i].rating
-      let figure = $('<figure>')
-      let image = $(`<img src=${imgStaticSrc} class="gif-img" data-state="still" data-still=${imgStaticSrc} data-animated=${imgAnimatedSrc}>`)
-      let ratingCap = $(`<figcaption class="rating">Rating: ${rating}</figcaption>`)
-      let favButton = $(`<button class="fav-button" data-state="still" data-still=${imgStaticSrc} data-animated=${imgAnimatedSrc}>&#9733; Favorite</button>`)
-      ratingCap.append(favButton)
-      figure.append(image).append(ratingCap)
-      $('#inner-container').append(figure)
-    }
-    $('#gif-container').prepend(`<div id="inner-container">`)
-  })
+  // create structure of gifs display
+  for (let i = 0; i < limit; i++) {
+    let imgAnimatedSrc = response.data[i].images.fixed_height.url
+    let imgStaticSrc = response.data[i].images.fixed_height_still.url
+    let rating = response.data[i].rating
+    let figure = $('<figure>')
+    let image = $(`<img src=${imgAnimatedSrc} class="gif-img" data-state="animated" data-still=${imgStaticSrc} data-animated=${imgAnimatedSrc}>`)
+    let ratingCap = $(`<figcaption class="rating">Rating: ${rating}</figcaption>`)
+    let favButton = $(`<button class="fav-button" data-state="still" data-still=${imgStaticSrc} data-animated=${imgAnimatedSrc}>&#9733; Favorite</button>`)
+    ratingCap.append(favButton)
+    figure.append(image).append(ratingCap)
+    $('#results').append(figure)
+  }
+
+  // show next page or prev page buttons
+  if (page === 0) {
+    $('#next-page').show()
+  } else {
+    $('#prev-page').show()
+    $('#next-page').show()
+  }
 }
 
-// animate gifs when you click on them
+function nextPage() {
+  page++
+  $('#results').empty()
+  let topic = $('#gif-input').val().trim()
+  searchGifs(topic)
+}
+
+function prevPage() {
+  page--
+  $('#results').empty()
+  let topic = $('#gif-input').val().trim()
+  searchGifs(topic)
+}
+
+// pause or animate gifs when you click on them
 function changeSrc() {
   if ($(this).attr('data-state') === 'still') {
     $(this).attr('src', $(this).attr('data-animated'))
@@ -74,7 +78,11 @@ function changeSrc() {
 
 // clear gifs from the main screen
 $('#clear-gifs').on('click', function() {
-  $('#inner-container').siblings('#inner-container').empty()
+  $('#results').empty()
+  $('#gif-input').val('')
+  page = 0
+  $('#prev-page').hide()
+  $('#next-page').hide()
 })
 
 // add gifs to your favorites list and save them in local storage
@@ -133,10 +141,10 @@ function displaySavedFavs() {
   }
 }
 
-$(document).on('click', '.topic', displayGifs)
 $(document).on('click', '.gif-img', changeSrc)
+$(document).on('click', '#prev-page', prevPage)
+$(document).on('click', '#next-page', nextPage)
 $(document).on('click', '.fav-button', addToFavs)
 $(document).on('click', '.remove-button', removeFav)
 
-displayButtons()
 displaySavedFavs()
