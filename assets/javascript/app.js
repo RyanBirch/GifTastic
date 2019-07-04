@@ -6,15 +6,20 @@ $('#prev-page').hide()
 $('#next-page').hide()
 
 // if we have favorites in local storage, they will go into this array
-let arr = JSON.parse(localStorage.getItem('savedFavArray'))
-if (arr) {
-  savedFavArray = arr
+try {
+  let arr = JSON.parse(localStorage.getItem('savedFavArray'))
+  if (arr) {
+    savedFavArray = arr
+  }
+} catch(error) {
+  console.log(error)
 }
 
 // get input from user and run search
 $('#add-gif').on('click', function() {
   event.preventDefault()
   let topic = $('#gif-input').val().trim()
+  $('#results').empty()
   searchGifs(topic)
 })
 
@@ -23,10 +28,12 @@ async function searchGifs(topic) {
   let key = 'TUOzKgx9bjMSFVmrVSQ3d619fQIY6iG3'
   let limit = 20
   let offset = page * limit
+  let cors = `https://cors-anywhere.herokuapp.com/`
   let queryURL = `https://api.giphy.com/v1/gifs/search?q=${topic}&api_key=${key}&limit=${limit}&offset=${offset}`
 
-  // call api
-  let response = await $.get(queryURL)
+  // // call api
+  let response = await $.get(cors + queryURL)
+  console.log(response)
 
   // create structure of gifs display
   for (let i = 0; i < limit; i++) {
@@ -90,7 +97,7 @@ function addToFavs() {
   let imgAnimatedSrc = $(this).attr('data-animated')
   let imgStaticSrc = $(this).attr('data-still')
   let figure = $('<figure>')
-  let img = $(`<img src=${imgStaticSrc} class="gif-img" data-state="still" data-still=${imgStaticSrc} data-animated=${imgAnimatedSrc}>`)
+  let img = $(`<img src=${imgAnimatedSrc} class="gif-img" data-state="still" data-still=${imgStaticSrc} data-animated=${imgAnimatedSrc}>`)
   figure.append(img)
   let cap = $('<figcaption>')
   let remove = $(`<button class="remove-button">Remove</button>`)
@@ -100,8 +107,13 @@ function addToFavs() {
 
   let favSave = figure.html()
   savedFavArray.push(favSave)
-  localStorage.clear()
-  localStorage.setItem('savedFavArray', JSON.stringify(savedFavArray))
+  try {
+    localStorage.clear()
+    localStorage.setItem('savedFavArray', JSON.stringify(savedFavArray))
+  } catch(error) {
+    console.log(error)
+    alert(`Your browser's security settings prevent favorites from being added to localStorage`)
+  }
 }
 
 // remove selected favorites from the screen and local storage
@@ -147,4 +159,8 @@ $(document).on('click', '#next-page', nextPage)
 $(document).on('click', '.fav-button', addToFavs)
 $(document).on('click', '.remove-button', removeFav)
 
-displaySavedFavs()
+try {
+  displaySavedFavs()
+} catch(error) {
+  console.log(error)
+}
